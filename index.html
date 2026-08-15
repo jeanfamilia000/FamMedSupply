@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAM MedSupply · Distribución médica · Santo Domingo, RD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --azul:    #186a8c;
+      --azul2:   #115a78;
+      --verde:   #00a887;
+      --verde2:  #008f72;
+      --tinta:   #243447;
+      --tinta2:  #1c2a38;
+      --gris:    #7a96a8;
+      --gris2:   #b0c8d5;
+      --borde:   #e0eaef;
+      --fondo:   #f4f8fa;
+      --blanco:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--blanco);
+      color: var(--tinta);
+      font-family: 'Instrument Sans', -apple-system, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LOGO SVG ── */
+    .logo-sym { position: relative; flex-shrink: 0; display: inline-block; }
+    .logo-sym .t { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--azul); clip-path: inset(0 0 50% 0); }
+    .logo-sym .b { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--verde); clip-path: inset(50% 0 0 0); }
+    .logo-sym .v { position: absolute; background: var(--azul); border-radius: 2px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 64px; height: 64px;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--borde);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-nombre { font-size: 15px; line-height: 1; }
+    .nav-nombre b { font-weight: 700; color: var(--tinta); }
+    .nav-nombre span { font-weight: 400; color: var(--azul); opacity: .75; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 12px; color: var(--gris); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--azul); }
+    .nav-cta {
+      font-size: 12px; font-weight: 600; font-family: inherit;
+      color: var(--blanco); background: var(--azul);
+      border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer;
+      transition: background .15s;
+    }
+    .nav-cta:hover { background: var(--azul2); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 136px 64px 88px;
+      border-bottom: 1px solid var(--borde);
+      background: var(--blanco);
+    }
+    .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--azul); margin-bottom: 24px; opacity: .8;
+    }
+    .hero h1 {
+      font-size: clamp(44px, 6vw, 76px); font-weight: 300;
+      line-height: 1.06; letter-spacing: -.03em;
+      color: var(--tinta); max-width: 780px; margin-bottom: 20px;
+    }
+    .hero h1 b { font-weight: 700; }
+    .hero-sub {
+      font-size: 16px; line-height: 1.75; color: var(--gris);
+      max-width: 440px; margin-bottom: 36px;
+    }
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-p {
+      display: inline-block; font-size: 13px; font-weight: 600; font-family: inherit;
+      color: var(--blanco); background: var(--azul);
+      border: none; padding: 13px 26px; border-radius: 8px;
+      cursor: pointer; text-decoration: none; transition: background .15s;
+    }
+    .btn-p:hover { background: var(--azul2); }
+    .btn-g {
+      display: inline-block; font-size: 13px; font-weight: 500; font-family: inherit;
+      color: var(--tinta); background: var(--blanco);
+      border: 1px solid var(--borde); padding: 12px 26px; border-radius: 8px;
+      cursor: pointer; text-decoration: none; transition: background .15s;
+    }
+    .btn-g:hover { background: var(--fondo); }
+
+    .pillars {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      margin-top: 56px; padding-top: 36px;
+      border-top: 1px solid var(--borde);
+    }
+    .pillar { padding-right: 32px; border-right: 1px solid var(--borde); }
+    .pillar:last-child { border-right: none; padding-right: 0; }
+    .pillar-dot { width: 7px; height: 7px; border-radius: 50%; margin-bottom: 12px; }
+    .pillar-name { font-size: 13px; font-weight: 600; color: var(--tinta); margin-bottom: 5px; }
+    .pillar-desc { font-size: 13px; color: var(--gris); line-height: 1.55; }
+
+    /* ── SECCIONES ── */
+    section { padding: 96px 64px; border-bottom: 1px solid var(--borde); }
+    section:nth-child(even) { background: var(--fondo); }
+    .sec-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--azul); margin-bottom: 52px; opacity: .7;
+    }
+
+    /* ── NOSOTROS ── */
+    .nos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .nos-grid h2 {
+      font-size: clamp(30px, 3.5vw, 44px); font-weight: 300;
+      letter-spacing: -.025em; line-height: 1.15;
+      color: var(--tinta); margin-bottom: 22px;
+    }
+    .nos-grid h2 b { font-weight: 700; }
+    .nos-body { font-size: 15px; line-height: 1.8; color: var(--gris); margin-bottom: 14px; }
+    .valores { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
+    .val {
+      font-size: 11px; font-weight: 500; color: var(--azul);
+      border: 1px solid #c2d8e5; padding: 5px 13px;
+      border-radius: 100px; background: #eef5f9;
+    }
+    .mv-stack { display: flex; flex-direction: column; }
+    .mv { padding: 22px 0; border-bottom: 1px solid var(--borde); }
+    .mv:first-child { border-top: 1px solid var(--borde); }
+    .mv-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--gris2); margin-bottom: 7px;
+    }
+    .mv-text { font-size: 13px; line-height: 1.75; color: var(--gris); }
+
+    /* ── PRODUCTOS ── */
+    .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+    .cat { padding: 36px; border: 1px solid var(--borde); margin: -.5px; transition: background .15s; }
+    .cat:hover { background: var(--fondo); }
+    .cat-name { font-size: 17px; font-weight: 600; color: var(--tinta); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 12px; color: var(--gris);
+      border: 1px solid var(--borde); padding: 5px 11px;
+      border-radius: 5px; background: #fafcfd;
+    }
+    .prod-cta { text-align: center; padding-top: 52px; }
+    .prod-cta p { font-size: 13px; color: var(--gris2); margin-bottom: 18px; }
+
+    /* ── CLIENTES ── */
+    .cl-header {
+      font-size: clamp(26px, 3vw, 40px); font-weight: 300;
+      letter-spacing: -.02em; line-height: 1.25;
+      color: var(--tinta); max-width: 560px; margin-bottom: 48px;
+    }
+    .cl-header b { font-weight: 700; }
+    .cl-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .cl { padding: 28px; border: 1px solid var(--borde); margin: -.5px; background: var(--blanco); transition: background .15s; }
+    .cl:hover { background: #eef5f9; }
+    .cl-bar { width: 24px; height: 3px; border-radius: 2px; margin-bottom: 14px; }
+    .cl-name { font-size: 14px; font-weight: 600; color: var(--tinta); margin-bottom: 5px; }
+    .cl-desc { font-size: 12px; color: var(--gris); line-height: 1.55; }
+
+    /* ── FILOSOFÍA ── */
+    #filosofia {
+      background: var(--tinta) !important;
+      border-bottom: 1px solid var(--tinta2);
+    }
+    #filosofia .sec-label { color: #5b8fa8; opacity: .55; }
+    .filo-wrap { text-align: center; max-width: 600px; margin: 0 auto; }
+    .filo-quote {
+      font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; font-style: italic;
+      color: var(--blanco); line-height: 1.35; margin-bottom: 20px;
+    }
+    .filo-quote em { font-style: normal; color: var(--verde); }
+    .filo-attr { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #5b8fa8; }
+    .filo-pillars { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 56px; }
+    .fp { padding: 28px; border: 1px solid rgba(255,255,255,.08); margin: -.5px; text-align: center; }
+    .fp-n { font-size: 32px; font-weight: 300; color: var(--azul); opacity: .5; margin-bottom: 8px; }
+    .fp-name { font-size: 15px; font-weight: 500; color: #f0f5f8; }
+
+    /* ── COBERTURA ── */
+    .cob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cob-grid h2 {
+      font-size: clamp(30px, 3.5vw, 44px); font-weight: 300;
+      letter-spacing: -.025em; line-height: 1.1;
+      color: var(--tinta); margin-bottom: 16px;
+    }
+    .cob-grid h2 b { font-weight: 700; }
+    .cob-body { font-size: 15px; color: var(--gris); line-height: 1.75; margin-bottom: 28px; }
+    .zonas { display: grid; grid-template-columns: 1fr 1fr; }
+    .zona { padding: 18px; border: 1px solid var(--borde); margin: -.5px; }
+    .zona-dot { width: 6px; height: 6px; border-radius: 50%; margin-bottom: 7px; }
+    .zona-name { font-size: 13px; font-weight: 500; color: var(--tinta); }
+    .flujo-box { border: 1px solid var(--borde); border-radius: 12px; padding: 36px; background: var(--blanco); }
+    .flujo-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--gris2); margin-bottom: 24px;
+    }
+    .flujo { display: flex; flex-direction: column; }
+    .flujo-step {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid var(--borde);
+      font-size: 14px; color: var(--gris);
+    }
+    .flujo-step:last-child { border-bottom: none; color: var(--tinta); font-weight: 600; }
+    .flujo-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── COTIZACIÓN ── */
+    .cot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cot-grid h2 {
+      font-size: clamp(30px, 3.5vw, 44px); font-weight: 300;
+      letter-spacing: -.025em; line-height: 1.1;
+      color: var(--tinta); margin-bottom: 16px;
+    }
+    .cot-grid h2 b { font-weight: 700; }
+    .cot-sub { font-size: 15px; color: var(--gris); line-height: 1.75; margin-bottom: 32px; }
+    .contacts { display: flex; flex-direction: column; gap: 14px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--gris); }
+    .contact-icon {
+      width: 36px; height: 36px; border: 1px solid var(--borde);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 16px; flex-shrink: 0;
+      background: var(--fondo);
+    }
+    form { display: flex; flex-direction: column; gap: 12px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    input, select, textarea {
+      width: 100%; font-family: inherit; font-size: 14px; font-weight: 400;
+      color: var(--tinta); background: var(--blanco);
+      border: 1px solid var(--borde); border-radius: 8px;
+      padding: 13px 15px; outline: none; transition: border-color .15s;
+      appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: var(--gris2); }
+    select { color: var(--gris); cursor: pointer; }
+    input:focus, select:focus, textarea:focus { border-color: var(--azul); }
+    textarea { resize: none; line-height: 1.6; }
+    .form-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--blanco); border-top: 1px solid var(--borde);
+    }
+    .f-logo { display: flex; align-items: center; gap: 9px; }
+    .f-nombre { font-size: 14px; }
+    .f-nombre b { font-weight: 700; color: var(--tinta); }
+    .f-nombre span { font-weight: 400; color: var(--azul); opacity: .7; }
+    .f-copy { font-size: 12px; color: var(--gris2); }
+    .f-links { display: flex; gap: 22px; list-style: none; }
+    .f-links a { font-size: 12px; color: var(--gris2); text-decoration: none; transition: color .15s; }
+    .f-links a:hover { color: var(--azul); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 108px 24px 64px; }
+      .pillars { grid-template-columns: 1fr 1fr; padding-top: 28px; gap: 20px; }
+      .pillar { border-right: none; padding-right: 0; padding-bottom: 20px; border-bottom: 1px solid var(--borde); }
+      .pillar:nth-child(2n) { border-bottom: none; }
+      section { padding: 64px 24px; }
+      .nos-grid, .cob-grid, .cot-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cat-grid, .cl-grid { grid-template-columns: 1fr; }
+      .filo-pillars { grid-template-columns: 1fr 1fr; }
+      footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-sym" style="width:28px;height:28px;">
+      <div class="t"></div>
+      <div class="b"></div>
+      <div class="v" style="left:12px;top:8px;width:4px;height:12px;"></div>
+    </div>
+    <div class="nav-nombre"><b>FAM</b> <span>MedSupply</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#cobertura">Distribución</a></li>
+    <li><a href="#cotizacion">Contacto</a></li>
+  </ul>
+  <a href="#cotizacion" class="nav-cta">Solicitar cotización</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Distribución médica B2B · Santo Domingo, RD</div>
+  <h1>Suministros médicos.<br><b>Entrega confiable.</b></h1>
+  <p class="hero-sub">Distribución de insumos médicos para clínicas, consultorios, farmacias e instituciones de salud en República Dominicana.</p>
+  <div class="btns">
+    <a href="#cotizacion" class="btn-p">Solicitar cotización</a>
+    <a href="#productos" class="btn-g">Ver catálogo</a>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-dot" style="background:#186a8c;"></div>
+      <div class="pillar-name">Disponibilidad</div>
+      <div class="pillar-desc">Inventario de alta rotación siempre listo para entrega</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-dot" style="background:#00a887;"></div>
+      <div class="pillar-name">Rapidez</div>
+      <div class="pillar-desc">Cotizaciones ágiles y entregas eficientes</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-dot" style="background:#186a8c;"></div>
+      <div class="pillar-name">Precio</div>
+      <div class="pillar-desc">Precios competitivos para clientes B2B</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-dot" style="background:#00a887;"></div>
+      <div class="pillar-name">Confianza</div>
+      <div class="pillar-desc">Relaciones comerciales de largo plazo</div>
+    </div>
+  </div>
+</div>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="sec-label">Nosotros</div>
+  <div class="nos-grid">
+    <div>
+      <h2>Una distribuidora médica construida sobre <b>confianza.</b></h2>
+      <p class="nos-body">FAM MedSupply es una empresa dominicana enfocada en la distribución de insumos médicos y productos para el cuidado de la salud. Operamos en Santo Domingo con un modelo B2B orientado a ser el proveedor recurrente de nuestros clientes.</p>
+      <p class="nos-body">Nuestro objetivo no es una venta puntual — es convertirnos en el aliado de abastecimiento confiable de cada clínica, consultorio y farmacia con la que trabajamos.</p>
+      <div class="valores">
+        <span class="val">Responsabilidad</span>
+        <span class="val">Calidad</span>
+        <span class="val">Servicio</span>
+        <span class="val">Integridad</span>
+        <span class="val">Eficiencia</span>
+        <span class="val">Confianza</span>
+        <span class="val">Compromiso</span>
+      </div>
+    </div>
+    <div class="mv-stack">
+      <div class="mv">
+        <div class="mv-label">Misión</div>
+        <p class="mv-text">Proveer insumos médicos confiables y accesibles mediante un servicio de distribución eficiente, orientado a satisfacer las necesidades de los profesionales e instituciones del sector salud.</p>
+      </div>
+      <div class="mv">
+        <div class="mv-label">Visión</div>
+        <p class="mv-text">Convertirnos en una distribuidora médica reconocida en República Dominicana por nuestra disponibilidad, rapidez, servicio y relaciones comerciales confiables.</p>
+      </div>
+      <div class="mv">
+        <div class="mv-label">Modelo de negocio</div>
+        <p class="mv-text">B2B puro — no buscamos una venta, buscamos convertirnos en el proveedor recurrente de cada cliente. Fabricante → FAM MedSupply → inventario → cliente → reposición constante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="sec-label">Catálogo de productos</div>
+  <div class="cat-grid">
+    <div class="cat">
+      <div class="cat-name"><span class="cat-dot" style="background:#186a8c;"></span>Curación</div>
+      <div class="tags">
+        <span class="tag">Gasa estéril 4×4</span><span class="tag">Gasa no estéril</span>
+        <span class="tag">Algodón hidrófilo</span><span class="tag">Venda elástica</span>
+        <span class="tag">Venda de gasa</span><span class="tag">Esparadrapo</span>
+        <span class="tag">Micropore</span><span class="tag">Apósitos adhesivos</span>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-name"><span class="cat-dot" style="background:#00a887;"></span>Jeringas y agujas</div>
+      <div class="tags">
+        <span class="tag">Jeringas 1 ml</span><span class="tag">Jeringas 3 ml</span>
+        <span class="tag">Jeringas 5 ml</span><span class="tag">Jeringas 10 ml</span>
+        <span class="tag">Jeringas 20 ml</span><span class="tag">Agujas varios calibres</span>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-name"><span class="cat-dot" style="background:#186a8c;"></span>Protección</div>
+      <div class="tags">
+        <span class="tag">Guantes nitrilo</span><span class="tag">Guantes látex</span>
+        <span class="tag">Guantes quirúrgicos</span><span class="tag">Mascarillas quirúrgicas</span>
+        <span class="tag">N95 / KN95</span><span class="tag">Gorros desechables</span>
+        <span class="tag">Cubrezapatos</span><span class="tag">Batas desechables</span><span class="tag">Delantales</span>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-name"><span class="cat-dot" style="background:#00a887;"></span>Equipos básicos</div>
+      <div class="tags">
+        <span class="tag">Termómetros digitales</span><span class="tag">Oxímetros</span>
+        <span class="tag">Tensiómetros</span><span class="tag">Estetoscopios</span>
+        <span class="tag">Nebulizadores</span>
+      </div>
+    </div>
+  </div>
+  <div class="prod-cta">
+    <p>Catálogo de ~40 productos · 20 SKU de alta rotación en inventario permanente</p>
+    <a href="#cotizacion" class="btn-p">Solicitar cotización de productos</a>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section id="clientes">
+  <div class="sec-label">Clientes</div>
+  <h2 class="cl-header">Trabajamos con quienes hacen posible la <b>salud en República Dominicana.</b></h2>
+  <div class="cl-grid">
+    <div class="cl"><div class="cl-bar" style="background:#186a8c;"></div><div class="cl-name">Clínicas y centros médicos</div><div class="cl-desc">Abastecimiento recurrente de insumos de uso frecuente</div></div>
+    <div class="cl"><div class="cl-bar" style="background:#00a887;"></div><div class="cl-name">Consultorios médicos</div><div class="cl-desc">Médicos independientes y especialistas</div></div>
+    <div class="cl"><div class="cl-bar" style="background:#186a8c;"></div><div class="cl-name">Farmacias</div><div class="cl-desc">Reposición de insumos y equipos básicos</div></div>
+    <div class="cl"><div class="cl-bar" style="background:#00a887;"></div><div class="cl-name">Instituciones privadas</div><div class="cl-desc">Empresas con área médica o de bienestar</div></div>
+    <div class="cl"><div class="cl-bar" style="background:#186a8c;"></div><div class="cl-name">Distribuidores</div><div class="cl-desc">Alianzas comerciales y venta al por mayor</div></div>
+    <div class="cl"><div class="cl-bar" style="background:#00a887;"></div><div class="cl-name">Profesionales de la salud</div><div class="cl-desc">Enfermeras, técnicos y otros especialistas</div></div>
+  </div>
+</section>
+
+<!-- FILOSOFÍA -->
+<section id="filosofia">
+  <div class="sec-label">Filosofía</div>
+  <div class="filo-wrap">
+    <p class="filo-quote">"Tu suministro médico, <em>cuando lo necesitas.</em>"</p>
+    <div class="filo-attr">— FAM MedSupply · Santo Domingo, RD</div>
+  </div>
+  <div class="filo-pillars">
+    <div class="fp"><div class="fp-n">01</div><div class="fp-name">Disponibilidad</div></div>
+    <div class="fp"><div class="fp-n">02</div><div class="fp-name">Precio</div></div>
+    <div class="fp"><div class="fp-n">03</div><div class="fp-name">Rapidez</div></div>
+    <div class="fp"><div class="fp-n">04</div><div class="fp-name">Confianza</div></div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section id="cobertura">
+  <div class="sec-label">Distribución</div>
+  <div class="cob-grid">
+    <div>
+      <h2>Cobertura en <b>Santo Domingo.</b></h2>
+      <p class="cob-body">Operamos en toda el área metropolitana con entregas directas para clientes B2B. Nuestro enfoque inicial cubre los centros de mayor actividad médica de la ciudad.</p>
+      <div class="zonas">
+        <div class="zona"><div class="zona-dot" style="background:#186a8c;"></div><div class="zona-name">Distrito Nacional</div></div>
+        <div class="zona"><div class="zona-dot" style="background:#00a887;"></div><div class="zona-name">Santo Domingo Este</div></div>
+        <div class="zona"><div class="zona-dot" style="background:#186a8c;"></div><div class="zona-name">Santo Domingo Norte</div></div>
+        <div class="zona"><div class="zona-dot" style="background:#00a887;"></div><div class="zona-name">Santo Domingo Oeste</div></div>
+      </div>
+    </div>
+    <div class="flujo-box">
+      <div class="flujo-label">Cómo funciona</div>
+      <div class="flujo">
+        <div class="flujo-step"><div class="flujo-dot" style="background:#b0c8d5;"></div>Fabricante / proveedor</div>
+        <div class="flujo-step"><div class="flujo-dot" style="background:#b0c8d5;"></div>FAM MedSupply — inventario</div>
+        <div class="flujo-step"><div class="flujo-dot" style="background:#b0c8d5;"></div>Cotización rápida</div>
+        <div class="flujo-step"><div class="flujo-dot" style="background:#b0c8d5;"></div>Entrega en Santo Domingo</div>
+        <div class="flujo-step"><div class="flujo-dot" style="background:#186a8c;"></div>Reposición recurrente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZACIÓN -->
+<section id="cotizacion">
+  <div class="sec-label">Solicitar cotización</div>
+  <div class="cot-grid">
+    <div>
+      <h2>Hablemos de tu <b>pedido.</b></h2>
+      <p class="cot-sub">¿Necesitas abastecer tu clínica, consultorio o farmacia? Completa el formulario y te respondemos con una cotización en el menor tiempo posible.</p>
+      <div class="contacts">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          correo@fammedsupply.com
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          WhatsApp: +1 (809) 000-0000
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          Santo Domingo, República Dominicana
+        </div>
+      </div>
+    </div>
+    <form onsubmit="return false">
+      <div class="row2">
+        <input type="text" placeholder="Tu nombre">
+        <input type="text" placeholder="Empresa / clínica">
+      </div>
+      <input type="tel" placeholder="Teléfono / WhatsApp">
+      <input type="email" placeholder="tu@correo.com">
+      <select>
+        <option value="" disabled selected>Tipo de cliente</option>
+        <option>Clínica / Centro médico</option>
+        <option>Consultorio médico</option>
+        <option>Farmacia</option>
+        <option>Institución privada</option>
+        <option>Distribuidor</option>
+        <option>Otro</option>
+      </select>
+      <textarea rows="4" placeholder="¿Qué productos necesitas? Describe tu pedido..."></textarea>
+      <div class="form-btns">
+        <button class="btn-p" type="submit">Enviar solicitud</button>
+        <a href="https://wa.me/18090000000" class="btn-g" target="_blank">WhatsApp</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">
+    <div class="logo-sym" style="width:22px;height:22px;">
+      <div class="t" style="border-width:3px;"></div>
+      <div class="b" style="border-width:3px;"></div>
+      <div class="v" style="left:9.5px;top:6px;width:3px;height:10px;border-radius:1px;"></div>
+    </div>
+    <div class="f-nombre"><b>FAM</b> <span>MedSupply</span></div>
+  </div>
+  <div class="f-copy">© 2025 · Santo Domingo, República Dominicana</div>
+  <ul class="f-links">
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="#">WhatsApp</a></li>
+    <li><a href="#">Privacidad</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
