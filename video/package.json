@@ -1,7 +1,7 @@
 {
-  "name": "video",
+  "name": "jcf-video",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Videos de JCF Trading hechos con Remotion",
   "repository": {},
   "license": "UNLICENSED",
   "engines": {
@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.547",
+    "@remotion/fonts": "^4.0.547",
     "@remotion/zod-types": "4.0.547",
     "react": "19.3.1",
     "react-dom": "19.3.1",
@@ -17,6 +18,7 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@fontsource/inter": "^5.3.0",
     "@remotion/eslint-config-flat": "4.0.547",
     "@types/react": "19.3.0",
     "@types/web": "0.0.166",
@@ -26,6 +28,8 @@
   },
   "scripts": {
     "dev": "remotion studio",
+    "render": "remotion render Intro-Completo out/jcf-intro-completo.mp4",
+    "render:overlay": "remotion render Intro-Overlay out/jcf-intro-overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
